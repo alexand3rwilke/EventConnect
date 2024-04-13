@@ -8,7 +8,17 @@
     "test": "hardhat test",
     "build": "hardhat compile && tsc -p tsconfig.build.json",
     "hardhat": "hardhat",
-    "compile": "hardhat compile"
+    "compile": "hardhat compile",
+    "start-local-node-if-needed": "lsof -i :8545 > /dev/null && (echo 'A local ETH node is running already') || (yarn start-local-node)",
+    "start-local-node": "hardhat node & (sleep 1 && yarn compile && yarn deploy:bandada --network localhost)",
+    "dev": "yarn start-local-node-if-needed",
+    "deploy:bandada": "hardhat deploy:bandada",
+    "verify:bandada": "hardhat verify:bandada",
+    "deploy:bandada-semaphore": "hardhat deploy:bandada-semaphore",
+    "verify:bandada-semaphore": "hardhat verify:bandada-semaphore",
+    "test:report-gas": "REPORT_GAS=true hardhat test",
+    "test:coverage": "hardhat coverage",
+    "lint": "solhint 'contracts/**/*.sol'"
   },
   "main": "dist/typechain/index.js",
   "types": "typechain/index.ts",
@@ -19,6 +29,7 @@
   ],
   "dependencies": {
     "@openzeppelin/contracts": "^4.3.2",
+    "@semaphore-protocol/contracts": "3.4.0",
     "circuits": "^0.1.0",
     "circomlibjs": "^0.1.2",
     "snarkjs": "^0.4.16"
@@ -27,6 +38,9 @@
     "@nomiclabs/hardhat-ethers": "^2.0.3",
     "@nomiclabs/hardhat-etherscan": "^2.1.8",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@semaphore-protocol/group": "3.9.0",
+    "@semaphore-protocol/identity": "3.9.0",
+    "@semaphore-protocol/proof": "3.9.0",
     "@typechain/ethers-v5": "^7.2.0",
     "@typechain/hardhat": "^2.3.1",
     "@types/chai": "^4.3.0",
