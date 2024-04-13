@@ -4,8 +4,8 @@ import { task, types } from "hardhat/config"
 task("deploy:eventConnect-semaphore", "Deploy a EventConnectSemaphore contract")
     .addOptionalParam<boolean>("logs", "Print the logs", true, types.boolean)
     .addOptionalParam(
-        "bandada",
-        "Bandada contract address",
+        "eventConnect",
+        "EventConnect contract address",
         undefined,
         types.string
     )
@@ -19,7 +19,7 @@ task("deploy:eventConnect-semaphore", "Deploy a EventConnectSemaphore contract")
         async (
             {
                 logs,
-                bandada: bandadaAddress,
+                eventConnect: eventConnectAddress,
                 semaphoreVerifier: semaphoreVerifierAddress
             },
             { ethers, run }
@@ -59,12 +59,12 @@ task("deploy:eventConnect-semaphore", "Deploy a EventConnectSemaphore contract")
                 semaphoreVerifierAddress = semaphoreVerifier.address
             }
 
-            if (!bandadaAddress) {
-                const bandada = await run("deploy:bandada", {
+            if (!eventConnectAddress) {
+                const eventConnect = await run("deploy:eventConnect", {
                     logs
                 })
 
-                bandadaAddress = bandada.address
+                eventConnectAddress = eventConnect.address
             }
 
             const ContractFactory = await ethers.getContractFactory(
@@ -73,7 +73,7 @@ task("deploy:eventConnect-semaphore", "Deploy a EventConnectSemaphore contract")
 
             const contract = await ContractFactory.deploy(
                 semaphoreVerifierAddress,
-                bandadaAddress
+                eventConnectAddress
             )
 
             await contract.deployed()
