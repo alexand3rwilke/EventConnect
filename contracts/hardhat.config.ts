@@ -8,6 +8,11 @@ import "hardhat-gas-reporter";
 import "solidity-coverage";
 import "hardhat-dependency-compiler";
 import { formatEther, parseEther } from "ethers/lib/utils";
+import "solidity-coverage"
+import "./tasks/deploy-event-connect"
+import "./tasks/verify-bandada"
+import "./tasks/deploy-event-connect-semaphore"
+import "./tasks/verify-bandada-semaphore"
 
 dotenv.config();
 

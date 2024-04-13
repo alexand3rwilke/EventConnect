@@ -1,4 +1,4 @@
-import { Verifier__factory, ZkApp__factory } from "contracts";
+import { Verifier__factory, ZkApp__factory, EventConnect__factory, EventConnectSemaphore__factory } from "contracts";
 import { useEthers } from "@usedapp/core";
 import { BytesLike, solidityKeccak256 } from "ethers/lib/utils";
 import { useEffect, useState } from "react";
