@@ -78,8 +78,13 @@ const config: HardhatUserConfig = {
     apiKey: process.env.ETHERSCAN_API_KEY,
   },
   dependencyCompiler: {
-    paths: ["circuits/zk/verifiers/Main.sol"],
-  },
+    paths: [
+        "@semaphore-protocol/contracts/base/Pairing.sol",
+        "@semaphore-protocol/contracts/base/SemaphoreVerifier.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "circuits/zk/verifiers/Main.sol",
+    ]
+},
 };
 
 export default config;
