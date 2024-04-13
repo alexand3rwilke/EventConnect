@@ -10,7 +10,7 @@ import "hardhat-dependency-compiler";
 import { formatEther, parseEther } from "ethers/lib/utils";
 import "solidity-coverage"
 import "./tasks/deploy-event-connect"
-import "./tasks/verify-bandada"
+import "./tasks/verify-event-connect"
 import "./tasks/deploy-event-connect-semaphore"
 import "./tasks/verify-bandada-semaphore"
 
@@ -61,8 +61,8 @@ const config: HardhatUserConfig = {
     ],
   },
   networks: {
-    goerli: {
-      url: process.env.GOERLI_URL || "",
+    sapphire: {
+      url: process.env.SAPPHIRE_URL || "",
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },
