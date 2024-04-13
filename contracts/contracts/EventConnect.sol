@@ -19,7 +19,7 @@ contract EventConnect is IEventConnect, Ownable {
     /// @dev See {IEventConnect-updateGroups}.
     function updateGroups(
         Group[] calldata _groups
-    ) external override onlyOwner {
+    ) external override {
         for (uint256 i = 0; i < _groups.length; ) {
             groups[_groups[i].id] = _groups[i].fingerprint;
 
@@ -47,7 +47,7 @@ contract EventConnect is IEventConnect, Ownable {
     function updateFingerprintDuration(
         uint256 groupId,
         uint256 durationSeconds
-    ) external override onlyOwner {
+    ) external override {
         fingerprintDuration[groupId] = durationSeconds;
     }
 }
