@@ -25,7 +25,7 @@ describe.only("EventEmailVerifier", () => {
     dkimResult = await verifyDKIMSignature(rawEmail);
 
     circuit = await wasm_tester(
-      path.join(__dirname, "./email-verifier-test.circom"),
+      path.join(__dirname, "./eventMail.circom"),
       {
         // @dev During development recompile can be set to false if you are only making changes in the tests.
         // This will save time by not recompiling the circuit every time.
