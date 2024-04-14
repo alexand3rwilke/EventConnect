@@ -1,0 +1,3 @@
+[submodule "circuits/zk-email-verify"]
+	path = circuits/zk-email-verify
+	url = https://github.com/zkemail/zk-email-verify.git

@@ -1,0 +1,86 @@
+Delivered-To: affiliaps@gmail.com
+Received: by 2002:a05:7001:1:b0:56d:1e0c:1d44 with SMTP id rm1csp1433002mab;
+        Sat, 13 Apr 2024 18:30:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF0Uf9jn/BSYxzMrkmloV8VwO6IsrUWdTO2VSLrU3+FsG2RGAnsG095LawlZPK49fv7Dy4X
+X-Received: by 2002:a05:6000:1561:b0:346:20ea:2e5e with SMTP id 1-20020a056000156100b0034620ea2e5emr9274915wrz.21.1713058238164;
+        Sat, 13 Apr 2024 18:30:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1713058238; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Dt6YpEmir2v+697gzS4SCl6efHmLR0XCrkZPNSLaQDy1KX8JaJS6vX96RiUZw2V9kZ
+         VLGDQGaDISEEqS2ssMDH5E45YXo0Kz4oE9z0f7n7ej2uceHjp2dfHCjIoIujF5Q7esvK
+         31FvsUlRe+0PVcwobgI8s2Zvr+EyOHTO1J/zzA+kilO7wGuNAvQ3tooTAaYxXusVFqlx
+         T+12XV0KRYvaVzrW1XbaPOvsgWYAZK990+wyunHb426eS0+G9ZKkEze17vSVX8qXwl21
+         8ciPvMdlft2qFeHzk7IUnnm1RvcuJb7X+rPG4G5Bhf+NYKTAPy79cxTiEeIptFjt+tUq
+         fJ9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:feedback-id:message-id:subject:from:to:date
+         :dkim-signature;
+        bh=lVQ9fjLHzQbPTGDejfEvuza5AH1JZm7IeZkHpnJzTOw=;
+        fh=vY5d6SFWKu07Sw99M1A6EaGcShdGib1v9uxsk1Hz80c=;
+        b=jjqUao68+E7rvGVJi5uTgyYOPC35BhI5/wLzHgE6Dtjide7U/xyfaG0Bz5JORBfQiu
+         6RFhe13BEcj+xnFxLKtfmFb67ullCHbdd3r285aL/g/4bxpy0hi5PTyPW9rDhvhbz1Rl
+         iHvTaB8FxvP3p14LXLh6trODR2NG2WQBw16f2PdVxer2puxekM3DAC8lktMb1B9E8bA+
+         nA16YVIHyXdHB7L/kNs6Dnu/ThARuPmwAPtcbphtt6kvQVmnApgiwx803b2St/LDZNZY
+         H7hjuD2pP9RzP0lx/CkQwVWeRicPGqXF0TYKawJ1xj8ioRmm9chvYsh0krNkjBdz98di
+         gxEw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@pm.me header.s=protonmail3 header.b=n8dFthdM;
+       spf=pass (google.com: domain of iam-zk-dev@pm.me designates 185.70.40.131 as permitted sender) smtp.mailfrom=iam-zk-dev@pm.me;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=pm.me
+Return-Path: <iam-zk-dev@pm.me>
+Received: from mail-40131.protonmail.ch (mail-40131.protonmail.ch. [185.70.40.131])
+        by mx.google.com with ESMTPS id c12-20020a5d63cc000000b00343dbbb9e50si3901981wrw.736.2024.04.13.18.30.37
+        for <affiliaps@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 13 Apr 2024 18:30:38 -0700 (PDT)
+Received-SPF: pass (google.com: domain of iam-zk-dev@pm.me designates 185.70.40.131 as permitted sender) client-ip=185.70.40.131;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@pm.me header.s=protonmail3 header.b=n8dFthdM;
+       spf=pass (google.com: domain of iam-zk-dev@pm.me designates 185.70.40.131 as permitted sender) smtp.mailfrom=iam-zk-dev@pm.me;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=pm.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
+	s=protonmail3; t=1713058237; x=1713317437;
+	bh=lVQ9fjLHzQbPTGDejfEvuza5AH1JZm7IeZkHpnJzTOw=;
+	h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=n8dFthdMXkAVcIz80ZPdJNCZZUiRErdOOMKS4qfN+9DI5C6K8ZRMDYeH+FRKZT4lw
+	 Br91sqIKFQp9hc3Bbq39fNJ7n6Yp6zousihti72d4XF0/P4DfKLLVGYXaCG6qSokqP
+	 64e1nlB/O37/BSfNINVho3MQ4utOWNKLWUGZ29bYEX+IUGw9N3bTr9r8uE9n9VGwE0
+	 ujTZEG/sXrtj6Bs2y2sTRob/uTBrIjg067/5L2LEEsCzspi5zXlBQzltV0RxjEgoUe
+	 BaPmkJBEjvQK+G9VKcMjbXqsk7mVZj4/V9VtsVevploVwvh09qsoDhE6jQDkwMXUIb
+	 AOWW+k096wYbw==
+Date: Sun, 14 Apr 2024 01:30:30 +0000
+To: "affiliaps@gmail.com" <affiliaps@gmail.com>
+From: IaM DEV <iam-zk-dev@pm.me>
+Subject: Registration confirmed for ETHDam
+Message-ID: <V8qVKpzIkDqPIaYgAKORMyGSTfB52IGioraDXvV0K-HAxZHW2Vgctky8JZjYJhz2_9MXmbvW68C6h2kPUceNmtrNs-9aztDeaFulR4wxqnM=@pm.me>
+Feedback-ID: 71653228:user:proton
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_skZcM0Q03aZcIdqx4mMYOuJzdeTmyhKDB577JcUg"
+
+This is a multi-part message in MIME format.
+
+--b1_skZcM0Q03aZcIdqx4mMYOuJzdeTmyhKDB577JcUg
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+VSBoZWVmdCB6aWNoIGdlcmVnaXN0cmVlcmQgdm9vcgoKRVRIRGFtIC0gVHJhaWwgb2YgQml0cyBX
+b3Jrc2hvcA==
+
+--b1_skZcM0Q03aZcIdqx4mMYOuJzdeTmyhKDB577JcUg
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PGh0bWw+PGhlYWQ+PC9oZWFkPjxib2R5PiA8ZGl2Pjxicj48L2Rpdj48ZGl2IGRpcj0iYXV0byI+
+PHAgc3R5bGU9Im1hcmdpbjogMC4wcHggMC4wcHggMC4wcHggMC4wcHg7ICI+PHNwYW4gc3R5bGU9
+IjsgZm9udC13ZWlnaHQ6IGJvbGQ7IGZvbnQtc3R5bGU6IG5vcm1hbDsgIj5VIGhlZWZ0IHppY2gg
+Z2VyZWdpc3RyZWVyZCB2b29yPC9zcGFuPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46IDAuMHB4IDAu
+MHB4IDAuMHB4IDAuMHB4OyAiPjxzcGFuIHN0eWxlPSI7IGZvbnQtd2VpZ2h0OiBib2xkOyBmb250
+LXN0eWxlOiBub3JtYWw7ICI+RVRIRGFtIC0gVHJhaWwgb2YgQml0cyBXb3Jrc2hvcDwvc3Bhbj48
+L3A+PGJyPjwvZGl2PiA8L2JvZHk+PC9odG1sPg==
+
+
+--b1_skZcM0Q03aZcIdqx4mMYOuJzdeTmyhKDB577JcUg--
+

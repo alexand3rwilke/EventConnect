@@ -1,4 +1,3 @@
-        
 pragma circom 2.1.5;
 
 include "@zk-email/zk-regex-circom/circuits/regex_helpers.circom";
@@ -313,4 +312,3 @@ template Test(msg_bytes) {
 		reveal0[i] <== in[i+1] * is_reveal0[i];
 	}
 }
-close

@@ -1,3 +1,6 @@
+# Compile test circuits
+compiled-test-circuit/
+
 # ZK artifacts
 zk
 browser

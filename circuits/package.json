@@ -14,6 +14,7 @@
   ],
   "scripts": {
     "test": "ts-mocha -p tsconfig.json test/**/*.ts --timeout 30000 --exit",
+    "test:jest": "NODE_OPTIONS=--max_old_space_size=8192 jest test/*.ts",
     "pretest": "tsc -p tsconfig.json",
     "precompile": "scripts/prerequisites.sh && mkdir -p zk/circuits zk/zkeys zk/verifiers",
     "postbuild": "cp zk/zkeys/main.zkey ../app/public && cp zk/circuits/main_js/main.wasm ../app/public",
@@ -25,7 +26,8 @@
   "license": "MIT",
   "dependencies": {
     "@ethersproject/abstract-signer": "^5.6.0",
-    "circomlib": "^2.0.3",
+    "@zk-email/zk-regex-circom": "^2.0.2",
+    "circomlib": "^2.0.5",
     "circomlibjs": "^0.1.2",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
@@ -38,11 +40,18 @@
     "snarkjs": "^0.4.16"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
+    "@babel/preset-typescript": "^7.24.1",
     "@types/chai": "^4.3.1",
     "@types/mocha": "^9.1.0",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
+    "babel-jest": "^29.7.0",
+    "babel-preset-jest": "^29.6.3",
     "chai": "^4.3.6",
+    "circom_tester": "^0.0.19",
+    "ffjavascript": "^0.2.59",
     "ts-mocha": "^9.0.2"
   },
   "engines": {
