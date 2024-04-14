@@ -13,6 +13,8 @@ exports.p = Scalar.fromString(
 );
 
 const STRING_PRESELECTOR = "Registratie bevestigd voor ";
+export const MAX_HEADER_PADDED_BYTES = 1024;
+export const MAX_BODY_PADDED_BYTES = 1536;
 
 describe.only("EventEmailVerifier", () => {
   jest.setTimeout(10 * 60 * 1000); // 10 minutes
@@ -21,11 +23,11 @@ describe.only("EventEmailVerifier", () => {
   let circuit: any;
 
   beforeAll(async () => {
-    const rawEmail = fs.readFileSync(path.join(__dirname, "./email.eml"));
-    dkimResult = await verifyDKIMSignature(rawEmail);
+    const rawEmail = fs.readFileSync(path.join(__dirname, "./email.eml"),  "utf8");
+    dkimResult = await verifyDKIMSignature(Buffer.from(rawEmail));
 
     circuit = await wasm_tester(
-      path.join(__dirname, "./eventMail.circom"),
+      path.join(__dirname, "./email-verifier-test.circom"),
       {
         // @dev During development recompile can be set to false if you are only making changes in the tests.
         // This will save time by not recompiling the circuit every time.
@@ -44,8 +46,8 @@ describe.only("EventEmailVerifier", () => {
       body: dkimResult.body,
       bodyHash: dkimResult.bodyHash,
       message: dkimResult.message,
-      maxMessageLength: 1024,
-      maxBodyLength: 1024,
+      maxMessageLength: MAX_HEADER_PADDED_BYTES,
+      maxBodyLength: MAX_BODY_PADDED_BYTES,
       shaPrecomputeSelector: STRING_PRESELECTOR,
     });
 
