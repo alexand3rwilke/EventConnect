@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "test": "ts-mocha -p tsconfig.json test/**/*.ts --timeout 30000 --exit",
-    "test:jest": "NODE_OPTIONS=--max_old_space_size=8192 jest tests/*.ts",
+    "test:jest": "NODE_OPTIONS=--max_old_space_size=8192 jest test/*.ts",
     "pretest": "tsc -p tsconfig.json",
     "precompile": "scripts/prerequisites.sh && mkdir -p zk/circuits zk/zkeys zk/verifiers",
     "postbuild": "cp zk/zkeys/main.zkey ../app/public && cp zk/circuits/main_js/main.wasm ../app/public",
